@@ -1,16 +1,97 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
+*.py[codz]
+*$py.class
 *.pyc
-node_modules/
-frontend/node_modules/
-dist/
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
 build/
-runs/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Environments
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Machine Learning / AI
+*.pt
+*.pth
+*.onnx
+*.h5
+*.ckpt
+
+# Large datasets & Models
+data/
+datasets/
+*.csv
+*.xlsx
 archive*.zip
 bdd100k/
 saved_nlp_model/
+
+# Training outputs
+runs/
+outputs/
+logs/
+
+# Frontend / JS
+node_modules/
+frontend/node_modules/
+
+# IDE / System
+.vscode/
+.idea/
+.DS_Store
 .claude/
-*.pt
-*.pth
+
+# Assets
 *.zip
 *.docx
 *.png
