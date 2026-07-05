@@ -1,5 +1,7 @@
 # Traffic Optimization System Using Multi-Modal AI
 
+🚀 **Live Interactive Demo:** [https://nexus.hmuhammadusman.com](https://nexus.hmuhammadusman.com)
+
 ## Overview
 
 This project presents an intelligent traffic optimization system that integrates multiple artificial intelligence models to analyze real-time traffic conditions, predict future congestion, detect anomalies, understand contextual events, and optimize traffic signal control.
@@ -85,13 +87,21 @@ It receives structured inputs from all previous models and learns optimal traffi
 
 ## Technologies Used
 
+### Backend / AI
 - Python  
 - PyTorch  
-- YOLOv8  
-- LSTM  
-- Variational Autoencoder (VAE)  
-- BERT  
-- Reinforcement Learning  
+- YOLOv8 (Computer Vision)
+- Variational Autoencoder (Time-Series Anomaly Detection)
+- LSTM (Time-Series Forecasting)
+- BERT (NLP Sentiment Analysis)
+- Stable-Baselines3 (PPO Reinforcement Learning)
+- FastAPI (API Layer)
+
+### Frontend
+- React
+- Vite
+- Framer Motion (3D Animations)
+- TailwindCSS  
 
 ---
 
@@ -100,12 +110,15 @@ It receives structured inputs from all previous models and learns optimal traffi
 ```
 Smart-Traffic-Optimization-System/
 │
-├── perception.py
-├── prediction/
-├── nlp/
-├── rl/
-├── data/        # Datasets (excluded from version control)
-├── runs/        # Output visualizations
+├── frontend/           # React / Vite Dashboard
+├── api.py              # FastAPI Backend Server
+├── main.py             # Integration Simulation Loop
+├── perception.py       # YOLOv8 Computer Vision
+├── prediction.py       # LSTM / VAE Time-Series
+├── social_media_nlp.py # BERT NLP Analysis
+├── traffic_optimization.py # PPO Reinforcement Learning
+├── data/               # Datasets (excluded from VC)
+├── runs/               # Output visualizations
 └── requirements.txt
 ```
 
