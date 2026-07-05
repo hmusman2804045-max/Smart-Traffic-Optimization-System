@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+node_modules/
+frontend/node_modules/
+dist/
+build/
+runs/
+archive*.zip
+bdd100k/
+saved_nlp_model/
+.claude/
+*.pt
+*.pth
+*.zip
+*.docx
+*.png
+*.jpg

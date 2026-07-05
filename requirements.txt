@@ -1,0 +1,16 @@
+# AI and Deep Learning
+ultralytics==8.1.0        # YOLOv8 for Traffic Perception
+torch>=1.12.0             # Backend for Neural Networks
+transformers>=4.30.0      # BERT for Social Media NLP
+stable-baselines3>=2.0.0  # Reinforcement Learning Controller
+gymnasium>=0.28.1         # Environment for RL
+
+# Data Processing & Math
+pandas>=2.0.0             # Data manipulation (CSV, Time-series)
+numpy>=1.24.0             # Numerical operations
+opencv-python>=4.7.0      # Image and Video processing
+scikit-learn>=1.2.0       # Metrics and Preprocessing
+
+# Visualization
+matplotlib>=3.7.0         # Graphing results (MAE, Anomaly plots)
+seaborn>=0.12.0           # Static visualization
