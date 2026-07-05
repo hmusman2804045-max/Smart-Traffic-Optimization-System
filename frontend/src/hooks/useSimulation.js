@@ -107,43 +107,48 @@ export function useSimulation(tickMs = 3000) {
     if (overrideRef.current === 'locked') return
 
     try {
-      // 1. Try to fetch from the live Python Backend
-      const overrideQuery = overrideRef.current ? `?override=${overrideRef.current}` : ''
-      
-      // Set a short timeout so it fails quickly if backend isn't there
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 1500);
-      
-      const res = await fetch(`http://localhost:8000/api/state${overrideQuery}`, { signal: controller.signal })
-      clearTimeout(timeoutId);
-      
-      if (!res.ok) throw new Error('API Response not OK');
-      
-      const next = await res.json()
-      
-      setState((prev) => {
-        if (prev.override === 'locked') return prev
-        stepRef.current += 1
+      // 1. Try to fetch from the live Python Backend (ONLY IF RUNNING LOCALLY)
+      if (import.meta.env.DEV) {
+        const overrideQuery = overrideRef.current ? `?override=${overrideRef.current}` : ''
         
-        const nextState = {
-          ...prev,
-          step: stepRef.current,
-          currentDensity: next.currentDensity,
-          predictedDensity: next.predictedDensity,
-          anomaly: next.anomaly,
-          reconError: next.reconError,
-          counts: next.counts,
-          sentiment: next.sentiment,
-          latestTweet: next.latestTweet,
-          tweets: next.latestTweet ? [next.latestTweet, ...prev.tweets].slice(0, 24) : prev.tweets,
-          decision: next.decision,
-          confidence: next.confidence,
-          stateVector: next.stateVector,
-        }
+        // Set a short timeout so it fails quickly if backend isn't there
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 1500);
         
-        setHistory((h) => [...h.slice(-39), { t: nextState.step, cur: nextState.currentDensity, pred: nextState.predictedDensity }])
-        return nextState
-      })
+        const res = await fetch(`http://localhost:8000/api/state${overrideQuery}`, { signal: controller.signal })
+        clearTimeout(timeoutId);
+        
+        if (!res.ok) throw new Error('API Response not OK');
+        
+        const next = await res.json()
+        
+        setState((prev) => {
+          if (prev.override === 'locked') return prev
+          stepRef.current += 1
+          
+          const nextState = {
+            ...prev,
+            step: stepRef.current,
+            currentDensity: next.currentDensity,
+            predictedDensity: next.predictedDensity,
+            anomaly: next.anomaly,
+            reconError: next.reconError,
+            counts: next.counts,
+            sentiment: next.sentiment,
+            latestTweet: next.latestTweet,
+            tweets: next.latestTweet ? [next.latestTweet, ...prev.tweets].slice(0, 24) : prev.tweets,
+            decision: next.decision,
+            confidence: next.confidence,
+            stateVector: next.stateVector,
+          }
+          
+          setHistory((h) => [...h.slice(-39), { t: nextState.step, cur: nextState.currentDensity, pred: nextState.predictedDensity }])
+          return nextState
+        })
+        return; // Exit if successful
+      } else {
+        throw new Error('Production Mode: Skipping localhost fetch');
+      }
       
     } catch (err) {
       // 2. FALLBACK: If the Python server is offline (like when deployed on Vercel), use Mock Data!
